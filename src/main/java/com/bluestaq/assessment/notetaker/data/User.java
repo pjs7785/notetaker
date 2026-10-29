@@ -3,7 +3,8 @@ package com.bluestaq.assessment.notetaker.data;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users",
+        uniqueConstraints = @UniqueConstraint(columnNames ={"user_name"}))
 public class User {
     @Id
     @GeneratedValue
@@ -15,7 +16,6 @@ public class User {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    // TODO: add unique constraint
     @Column(name = "user_name", nullable = false)
     private String userName;
 
