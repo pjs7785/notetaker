@@ -1,9 +1,13 @@
 services:
-  postgres:
+  db:
+    container_name: db
     image: 'postgres:latest'
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      - 'POSTGRES_DB=notetaker_db'
+      - 'POSTGRES_PASSWORD=notetaker'
+      - 'POSTGRES_USER=notetaker'
     ports:
-      - '5432'
+      - '5432:5432'
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+      - ./create.sql:/docker-entrypoint-initdb.d/create.sql
